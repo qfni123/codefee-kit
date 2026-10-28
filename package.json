@@ -1,7 +1,7 @@
 {
-  "name": "codefee-kit",
+  "name": "trial-react-component",
   "version": "0.0.42-alpha.29",
-  "description": "A simple UI kit for React projects",
+  "description": "A simple UI kit for React projects based on codefee-kit",
   "main": "dist/index.js",
   "files": [
     "dist",

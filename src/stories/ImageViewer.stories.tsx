@@ -1,9 +1,9 @@
-import image from './assets/filter-coffee.jpg';
+import { Meta, Story } from '@storybook/react';
+import { Figure } from 'components/Figure';
 import ImageViewer, { ImageViewerProps } from 'components/ImageViewer';
 import React from 'react';
+import image from './assets/filter-coffee.jpg';
 import styles from './assets/styles/ImageViewer.module.scss';
-import { Figure } from 'components/Figure';
-import { Meta, Story } from '@storybook/react';
 /* eslint-disable no-alert */
 
 export default {
@@ -14,17 +14,21 @@ export default {
 const Template: Story<ImageViewerProps> = (args) => (
   <Figure
     className={styles.Figure}
-    caption={<>
-      From a <a target="_blank" href="https://www.codefeetime.com/">Codefee Time</a>
-    </>}
+    caption={
+      <>
+        From a{' '}
+        <a target="_blank" href="https://www.codefeetime.com/">
+          Codefee Time
+        </a>
+      </>
+    }
   >
     <ImageViewer {...args} />
   </Figure>
 );
 
-export const Default = Template.bind({});
+export const Default = Template.bind({ maximize: true });
 Default.args = {
   src: image,
   alt: 'Filter Coffee',
 } as ImageViewerProps;
-

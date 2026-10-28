@@ -1,5 +1,5 @@
-import React, { FC, ReactNode } from 'react';
 import { CodefeeTheme, ITheme } from 'common/Theme';
+import React, { FC, ReactNode } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { GlobalResetCss } from './AppContainer.styled';
 
@@ -7,15 +7,21 @@ export interface AppContainerProps {
   children?: ReactNode;
   appTheme?: ITheme;
   requireCssReset?: boolean;
+  suppressMultiMountWarning?: boolean;
 }
 
 export const GlobalStyle = createGlobalStyle<AppContainerProps>`
   :root{
-    ${({ appTheme }) =>
-      Object.keys(appTheme as ITheme).map(
-        (key: keyof ITheme) => `${key}: ${(appTheme as ITheme)[key]};`
-      )};
-  }
+    ${({ appTheme }) => {
+      if (appTheme === undefined) {
+        return [];
+      }
+
+      const x: string[] = Object.keys(appTheme).map(
+        (key: string) => `${key}: ${appTheme[key as keyof ITheme]};`
+      );
+      return x;
+    }}
 
   ${({ requireCssReset }) => (requireCssReset ? GlobalResetCss : null)}
 `;
